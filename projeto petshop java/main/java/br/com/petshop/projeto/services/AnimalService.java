@@ -16,12 +16,10 @@ public class AnimalService {
     }
 
     public void setRepository(AnimalRepository repository) {
-        // migrate data from old repo to new repo
         List<Animal> current = this.repository.findAll();
         this.repository = repository;
         this.repository.clear();
         for (Animal a: current) {
-            // reset id to let repository assign new ids sequentially
             a.setId(0);
             this.repository.save(a);
         }
