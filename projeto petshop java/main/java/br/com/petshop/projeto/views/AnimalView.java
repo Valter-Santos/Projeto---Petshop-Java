@@ -14,7 +14,6 @@ public class AnimalView {
     private AnimalService service;
 
     public AnimalView() {
-        // default repository: lista
         this.service = new AnimalService(new AnimalRepositoryLista());
     }
 
