@@ -13,7 +13,6 @@ public class AnimalRepositoryLista implements AnimalRepository {
 
     @Override
     public Animal save(Animal animal) {
-        // if exists, update
         if (animal.getId() != 0) {
             for (int i=0;i<data.size();i++){
                 if (data.get(i).getId() == animal.getId()) {
@@ -22,13 +21,12 @@ public class AnimalRepositoryLista implements AnimalRepository {
                 }
             }
         } else {
-            // assign id
             int next = data.stream().mapToInt(Animal::getId).max().orElse(0) + 1;
             animal.setId(next);
             data.add(animal);
             return animal;
         }
-        // if id provided but not found, treat as new
+
         int next = data.stream().mapToInt(Animal::getId).max().orElse(0) + 1;
         animal.setId(next);
         data.add(animal);
