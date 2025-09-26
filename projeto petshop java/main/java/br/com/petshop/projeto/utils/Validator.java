@@ -15,7 +15,6 @@ public class Validator {
         if (cpf == null) return false;
         String only = cpf.replaceAll("[^0-9]", "");
         if (!CPF.matcher(only).matches()) return false;
-        // simple checksum can be added but for now check length 11
         return only.length() == 11;
     }
 
