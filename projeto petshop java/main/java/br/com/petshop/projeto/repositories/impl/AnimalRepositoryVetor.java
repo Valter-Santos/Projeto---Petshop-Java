@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Simple array-backed repository with fixed capacity that grows when needed.
- */
 public class AnimalRepositoryVetor implements AnimalRepository {
     private Animal[] arr;
     private int size = 0;
@@ -36,7 +33,7 @@ public class AnimalRepositoryVetor implements AnimalRepository {
                 }
             }
         }
-        // new
+
         ensureCapacity();
         int nextId = 1;
         for (int i=0;i<size;i++) if (arr[i].getId() >= nextId) nextId = arr[i].getId() + 1;
@@ -72,7 +69,6 @@ public class AnimalRepositoryVetor implements AnimalRepository {
     public boolean deleteById(int id) {
         for (int i=0;i<size;i++){
             if (arr[i].getId() == id) {
-                // shift left
                 for (int j=i;j<size-1;j++) arr[j]=arr[j+1];
                 arr[--size]=null;
                 return true;
